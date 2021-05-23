@@ -8,17 +8,18 @@ end = 11
 
 def congruentEq():
     """
-    Ohjelma tuottaa muotoa ax=b (m) olevia kongruenssiyhtälöitä, joiden ratkaisemisessa
-    pitää käyttää lausetta
-        1) Olkoot kokonaisluvut a, b, m ja positiivinen kokonaisluku c.
-                    ac=bc (mc) <-> a=b (m)
-        eli saa 'supistaa' kaikista luvuista.  
-        2) Olkoot kokonaisluvut a, b, c, m ja syt(c,m) = 1.
-                    ac = bc (m) -> a = b (m)
+    The program generates congruence equations of form
+        ax=b (m), 
+    which you have to solve by utilizing the following conjectures
     
-    Lisäksi sievennetyin lopputulos on sellainen, että
-            ax = b (m),
-    missä a != 0.
+    1) Let a, b and m be integers and a positive integer c so that
+        ac = bc (mc) <-> a = b (m).
+    2) Let numbers a, b, c and m be integers and gcd(c,m) = 1 so that
+        ac = bc (m) -> a = b (m).
+    
+    Simple form of the congruence equation is 
+        ax = b (m),
+    where a != 0.
     """
     
     a = random.randint(start, end)
@@ -33,20 +34,18 @@ def congruentEq():
         c = random.randint(start, end)
         m = random.randint(start + 3, end + 3)
     
-    lauseke1 = a * c * k
+    exp1 = a * c * k
     
-    while(lauseke1 < 100 or lauseke1 > 500 or math.gcd(a,m) != 1 or a == b):
+    while(exp1 < 100 or exp1 > 500 or math.gcd(a,m) != 1 or a == b):
         a = random.randint(start, end)
         k = random.randrange(start+1, end, 2)
-        lauseke1 = a * c * k
+        exp1 = a * c * k
     
-    lauseke2 = b * c * k
+    exp2 = b * c * k
     modulo = m * k
 
-
-    
     print("a={}, b={}, m={}, c={}, k={}".format(a, b, m, c, k))
     print("{}*{}*{}x = {}*{}*{} ({}*{})".format(a, c, k, b, c, k, m, k))
-    print("{}x = {} ({})".format(lauseke1, lauseke2, modulo))
+    print("{}x = {} ({})".format(exp1, exp2, modulo))
     
 congruentEq()
